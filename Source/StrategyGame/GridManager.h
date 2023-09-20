@@ -4,39 +4,30 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "GridCell.h"
 
 #include <vector>
 
-#include "MyGrid.generated.h"
-
-enum class MyGridModifiers
-{
-	SLOW = 0,
-	FIRE,
-	POISON
-};
+#include "GridManager.generated.h"
 
 UCLASS()
-class STRATEGYGAME_API AMyGrid : public AActor
+class STRATEGYGAME_API AGridManager : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	AMyGrid();
+	AGridManager();
 
-	UFUNCTION(BlueprintCallable)
-		void SetObject(UObject* object);
-	UFUNCTION(BlueprintCallable)
-		bool Empty();
+	//void SetSize(int width, int height);
 
 protected:
+	// Size of the Grid Map
+	int mWidth;
+	int mHeight;
 
-	// Object inside the grid
-	UObject* mObject;
-
-	// Possible gameplay modifiers in the grid
-	std::vector<MyGridModifiers> mModifiers;
+	// Grid container
+	//std::vector<std::vector<AMyGrid>> mGridMap;
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

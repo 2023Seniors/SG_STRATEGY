@@ -1,10 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "MyGrid.h"
+#include "GridCell.h"
 
 // Sets default values
-AMyGrid::AMyGrid()
+AGridCell::AGridCell()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -14,25 +14,25 @@ AMyGrid::AMyGrid()
 }
 
 // Called when the game starts or when spawned
-void AMyGrid::BeginPlay()
+void AGridCell::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
 // Called every frame
-void AMyGrid::Tick(float DeltaTime)
+void AGridCell::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 }
 
-void AMyGrid::SetObject(UObject* obj)
+void AGridCell::SetObject(UObject* obj)
 {
 	mObject = obj;
 }
 
-bool AMyGrid::Empty()
+bool AGridCell::Empty()
 {
 	return mObject == nullptr;
 }
