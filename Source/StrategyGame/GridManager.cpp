@@ -10,21 +10,28 @@ AGridManager::AGridManager()
 	PrimaryActorTick.bCanEverTick = true;
 
 	// Initialize the grid container
-	//SetSize(100, 100);
+	SetSize(100, 100);
 }
 
-//void AGridManager::SetSize(int width, int height)
-//{
-//	mWidth = width;
-//	mHeight = height;
-//
-//	// Resize vectors
-//	mGridMap.clear();
-//	mGridMap.resize(mWidth);
-//	for (int i = 0; i < mGridMap.size(); i++) {
-//		mGridMap[i].resize(mHeight);
-//	}
-//}
+void AGridManager::SetSize(int width, int height)
+{
+	mWidth = width;
+	mHeight = height;
+
+	//// Clear the array vectors
+	//for (auto& it : mGridMap)
+	//{
+	//	it.Empty();
+	//}
+	//mGridMap.Empty();
+	//
+	//// Resize to the new size
+	//mGridMap.SetNum(width);
+	//for (auto& it : mGridMap)
+	//{
+	//	it.SetNum(height);
+	//}
+}
 
 // Called when the game starts or when spawned
 void AGridManager::BeginPlay()

@@ -6,7 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "GridCell.h"
 
-#include <vector>
+#include "Containers/Array.h"
 
 #include "GridManager.generated.h"
 
@@ -19,7 +19,7 @@ public:
 	// Sets default values for this actor's properties
 	AGridManager();
 
-	//void SetSize(int width, int height);
+	void SetSize(int width, int height);
 
 protected:
 	// Size of the Grid Map
@@ -27,7 +27,7 @@ protected:
 	int mHeight;
 
 	// Grid container
-	//std::vector<std::vector<AMyGrid>> mGridMap;
+	//TArray<TArray<AGridCell>> mGridMap;
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
