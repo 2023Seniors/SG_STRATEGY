@@ -18,6 +18,10 @@ AGridManager::AGridManager()
 	SetCellSize(10);
 }
 
+FVector AGridManager::GetMapSize()
+{
+	return mMapSize;
+}
 void AGridManager::SetMapSize(int width, int height)
 {
 	mMapSize.X = width;
