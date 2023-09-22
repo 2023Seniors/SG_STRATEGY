@@ -38,7 +38,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void SetCellSize(int size);
 	UFUNCTION(BlueprintCallable)
-		AActor* GetEntityInWorldPos(FVector WorldPos);
+		void SetEntityFromWorldPos(AActor* Entity);
+	UFUNCTION(BlueprintCallable)
+		AActor* GetEntityFromWorldPos(FVector WorldPos);
 
 protected:
 	// Size of the Grid Map

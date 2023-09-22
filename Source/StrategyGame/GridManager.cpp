@@ -13,6 +13,8 @@ AGridManager::AGridManager()
 
 	// Initialize the grid container
 	SetMapSize(100, 100);
+	// Initialize the cell size
+	SetCellSize(10);
 }
 
 void AGridManager::SetMapSize(int width, int height)
@@ -37,19 +39,32 @@ void AGridManager::SetCellSize(int size)
 void AGridManager::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
 void AGridManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+}
+void AGridManager::SetEntityFromWorldPos(AActor* Entity)
+{
+	FVector Zero = this->GetActorLocation();
+	FVector Delta = Entity->GetActorLocation() - Zero;
 
+	int x = (int)Delta.X % mCellSize.X;
+	int y = (int)Delta.Y % mCellSize.Y;
+
+	mGridMap[mMapSize.Y * x + y].mEntity = Entity;
 }
 
-
-AActor* AGridManager::GetEntityInWorldPos(FVector WorldPos)
+AActor* AGridManager::GetEntityFromWorldPos(FVector WorldPos)
 {
-	return nullptr;
+	FVector Zero = this->GetActorLocation();
+	FVector Delta = WorldPos - Zero;
+
+	int x = (int)Delta.X % mCellSize.X;
+	int y = (int)Delta.Y % mCellSize.Y;
+
+	return mGridMap[mMapSize.Y * x + y].mEntity;
 }
 
