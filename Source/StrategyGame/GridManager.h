@@ -9,7 +9,7 @@
 #include "GridManager.generated.h"
 
 
-enum class GridCellModifiers
+enum GridCellModifiers
 {
 	SLOW = 0,
 	FIRE,
@@ -21,7 +21,7 @@ struct Cell
 	Cell();
 	AActor* mEntity;
 	TArray<GridCellModifiers> mModifiers;
-
+	bool mWalkable;
 };
 
 UCLASS()
@@ -41,6 +41,10 @@ public:
 		void SetEntityFromWorldPos(AActor* Entity);
 	UFUNCTION(BlueprintCallable)
 		AActor* GetEntityFromWorldPos(FVector WorldPos);
+	UFUNCTION(BlueprintCallable)
+		FVector GetCellXYFromWorldPos(FVector WorldPos);
+	UFUNCTION(BlueprintCallable)
+		bool	IsCellWalkableFromGridXY(int x, int y);
 
 protected:
 	// Size of the Grid Map

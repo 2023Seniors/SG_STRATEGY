@@ -3,13 +3,14 @@
 
 #include "GridManager.h"
 
-Cell::Cell() : mEntity(nullptr) {}
+Cell::Cell() : mEntity(nullptr), mWalkable(true){}
 
 // Sets default values
 AGridManager::AGridManager()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
 
 	// Initialize the grid container
 	SetMapSize(100, 100);
@@ -68,3 +69,17 @@ AActor* AGridManager::GetEntityFromWorldPos(FVector WorldPos)
 	return mGridMap[mMapSize.Y * x + y].mEntity;
 }
 
+FVector AGridManager::GetCellXYFromWorldPos(FVector WorldPos)
+{
+	FVector Zero = this->GetActorLocation();
+	FVector Delta = WorldPos - Zero;
+
+	int x = (int)Delta.X % mCellSize.X;
+	int y = (int)Delta.Y % mCellSize.Y;
+
+	return FVector(x, y, 0);
+}
+bool AGridManager::IsCellWalkableFromGridXY(int x, int y)
+{
+	return mGridMap[mMapSize.Y * x + y].mWalkable;
+}
