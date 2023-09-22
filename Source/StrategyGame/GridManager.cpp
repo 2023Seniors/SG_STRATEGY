@@ -12,19 +12,25 @@ AGridManager::AGridManager()
 	PrimaryActorTick.bCanEverTick = true;
 
 	// Initialize the grid container
-	SetSize(100, 100);
+	SetMapSize(100, 100);
 }
 
-void AGridManager::SetSize(int width, int height)
+void AGridManager::SetMapSize(int width, int height)
 {
-	mWidth = width;
-	mHeight = height;
+	mMapSize.X = width;
+	mMapSize.Y = height;
 
 	// Clear the array vectors
 	mGridMap.Empty();
 	
 	// Resize to the new size
 	mGridMap.SetNum(width * height);
+}
+
+void AGridManager::SetCellSize(int size)
+{
+	mCellSize.X = size;
+	mCellSize.Y = size;
 }
 
 // Called when the game starts or when spawned
@@ -39,5 +45,11 @@ void AGridManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+
+AActor* AGridManager::GetEntityInWorldPos(FVector WorldPos)
+{
+	return nullptr;
 }
 

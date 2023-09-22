@@ -6,7 +6,6 @@
 #include "GameFramework/Actor.h"
 #include "Containers/Array.h"
 
-
 #include "GridManager.generated.h"
 
 
@@ -34,12 +33,17 @@ public:
 	// Sets default values for this actor's properties
 	AGridManager();
 
-	void SetSize(int width, int height);
+	UFUNCTION(BlueprintCallable)
+		void SetMapSize(int width, int height);
+	UFUNCTION(BlueprintCallable)
+		void SetCellSize(int size);
+	UFUNCTION(BlueprintCallable)
+		AActor* GetEntityInWorldPos(FVector WorldPos);
 
 protected:
 	// Size of the Grid Map
-	int mWidth;
-	int mHeight;
+	FUintVector2 mMapSize;
+	FUintVector2 mCellSize;
 
 	// Grid container
 	TArray<Cell> mGridMap;
