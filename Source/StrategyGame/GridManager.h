@@ -4,11 +4,26 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "GridCell.h"
-
 #include "Containers/Array.h"
 
+
 #include "GridManager.generated.h"
+
+
+enum class GridCellModifiers
+{
+	SLOW = 0,
+	FIRE,
+	POISON
+};
+
+struct Cell
+{
+	Cell();
+	AActor* mEntity;
+	TArray<GridCellModifiers> mModifiers;
+
+};
 
 UCLASS()
 class STRATEGYGAME_API AGridManager : public AActor
@@ -27,7 +42,7 @@ protected:
 	int mHeight;
 
 	// Grid container
-	//TArray<TArray<AGridCell>> mGridMap;
+	TArray<Cell> mGridMap;
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

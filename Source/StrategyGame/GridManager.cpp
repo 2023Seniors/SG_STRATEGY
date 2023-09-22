@@ -3,6 +3,8 @@
 
 #include "GridManager.h"
 
+Cell::Cell() : mEntity(nullptr) {}
+
 // Sets default values
 AGridManager::AGridManager()
 {
@@ -18,19 +20,11 @@ void AGridManager::SetSize(int width, int height)
 	mWidth = width;
 	mHeight = height;
 
-	//// Clear the array vectors
-	//for (auto& it : mGridMap)
-	//{
-	//	it.Empty();
-	//}
-	//mGridMap.Empty();
-	//
-	//// Resize to the new size
-	//mGridMap.SetNum(width);
-	//for (auto& it : mGridMap)
-	//{
-	//	it.SetNum(height);
-	//}
+	// Clear the array vectors
+	mGridMap.Empty();
+	
+	// Resize to the new size
+	mGridMap.SetNum(width * height);
 }
 
 // Called when the game starts or when spawned
