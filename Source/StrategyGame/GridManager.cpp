@@ -1,7 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "GridManager.h"
+#include "Public/PathFinding.h"
 
 Cell::Cell() : mEntity(nullptr), mWalkable(true){}
 
@@ -86,4 +85,14 @@ FVector AGridManager::GetCellXYFromWorldPos(FVector WorldPos)
 bool AGridManager::IsCellWalkableFromGridXY(int x, int y)
 {
 	return mGridMap[mMapSize.Y * x + y].mWalkable;
+}
+
+FIntVector2 AGridManager::FindPath(FIntVector2 start, FIntVector2 end)
+{
+	return PathFinding::PFFindPath(start, end, this);
+}
+
+TArray<FIntVector2> AGridManager::FindFullPath(FIntVector2 start, FIntVector2 end)
+{
+	return PathFinding::PFFindFullPath(start, end, this);
 }
