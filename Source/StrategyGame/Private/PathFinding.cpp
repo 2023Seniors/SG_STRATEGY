@@ -6,13 +6,7 @@
 
 #include <algorithm>
 
-PathFinding::PathFinding()
-{
-}
-
-PathFinding::~PathFinding() {}
-
-void PathFinding::Reset(FIntVector2 cur_, FIntVector2 goal_, AGridManager* grid_)
+PathFinding::PathFinding(FIntVector2 cur_, FIntVector2 goal_, AGridManager* grid_, PathFindingMode mode, float weight_)
 {
 	stop = false;
 
@@ -21,8 +15,8 @@ void PathFinding::Reset(FIntVector2 cur_, FIntVector2 goal_, AGridManager* grid_
 
 	goal = goal_;
 	grid = grid_;
-	heuristicCalc = 1;
-	heuristicWeight = 1.01f;
+	heuristicCalc = mode;
+	heuristicWeight = weight_;
 
 	FVector mapSize = grid->GetMapSize();
 	gridSize.X = mapSize.X;
@@ -30,6 +24,8 @@ void PathFinding::Reset(FIntVector2 cur_, FIntVector2 goal_, AGridManager* grid_
 
 	openList.Add(node_t(new NodePathFinding(cur_)));
 }
+
+PathFinding::~PathFinding() {}
 
 bool PathFinding::CheckIdx(int x, int y)
 {
@@ -80,13 +76,13 @@ void PathFinding::CreateSuccesor(FIntVector2 pos_, node_t parent_, int idxCorner
 	// CALCULATE HEURISTIC
 	// REVISIT THIS, CANT SUBSTRACT VECTORS??? WTF
 	float h = -1.f;
-	if (heuristicCalc == 1) {
+	if (heuristicCalc == PathFindingMode::OCTILE) {
 		h = Octile( { goal.X - pos_.X, goal.Y - pos_.Y } );
 	}
-	else if (heuristicCalc == 2) {
+	else if (heuristicCalc == PathFindingMode::CHEBYSHEV) {
 		h = Chebyshev( { goal.X - pos_.X, goal.Y - pos_.Y });
 	}
-	else if (heuristicCalc == 3) {
+	else if (heuristicCalc == PathFindingMode::MANHATTAN) {
 		h = Manhattan( { goal.X - pos_.X, goal.Y - pos_.Y });
 	}
 	else {
@@ -149,10 +145,9 @@ node_t PathFinding::FindPop()
 	return node;
 }
 
-node_path FindPath(FIntVector2 start, FIntVector2 end, AGridManager* grid)
+FIntVector2 PathFinding::PFFindPath(FIntVector2 start, FIntVector2 end, AGridManager* grid, PathFindingMode mode, float weight_)
 {
-	static PathFinding path;
-	path.Reset(start, end, grid);
+	PathFinding path(start, end, grid, mode, weight_);
 
 	// UNTIL WE FIND A PATH OR LIST IS EMPTY
 	while (!path.openList.IsEmpty()) {
@@ -188,18 +183,17 @@ node_path FindPath(FIntVector2 start, FIntVector2 end, AGridManager* grid)
 			}
 
 			// Cost of thge whole journey, just return the first move
-			return { node->cost, pathNode->pos };
+			return pathNode->pos;
 		}
 	}
 
 	// OPEN LIST IS EMPTY, NO PATH FOUND
-	return { 0.f, start };
+	return start;
 }
 
-TArray<FIntVector2> FindFullPath(FIntVector2 start, FIntVector2 end, AGridManager* grid)
+TArray<FIntVector2> PathFinding::PFFindFullPath(FIntVector2 start, FIntVector2 end, AGridManager* grid, PathFindingMode mode, float weight_)
 {
-	static PathFinding path;
-	path.Reset(start, end, grid);
+	PathFinding path(start, end, grid, mode, weight_);
 
 	TArray<FIntVector2> pathVec;
 
@@ -241,14 +235,14 @@ TArray<FIntVector2> FindFullPath(FIntVector2 start, FIntVector2 end, AGridManage
 }
 
 
-float Euclidean(FIntVector2 end, FIntVector2 start)
+float PathFinding::Euclidean(FIntVector2 end, FIntVector2 start)
 {
 	float x = (end.X - start.X);
 	float y = (end.Y - start.Y);
 	return x * x + y * y;
 }
 
-float Octile(FIntVector2 pos_)
+float PathFinding::Octile(FIntVector2 pos_)
 {
 	static float sqrt2 = std::sqrt(2);
 	float x = std::abs(pos_.X);
@@ -256,14 +250,14 @@ float Octile(FIntVector2 pos_)
 	return ((std::min)(x, y)) * sqrt2 + (std::max)(x, y) - (std::min)(x, y);
 }
 
-float Chebyshev(FIntVector2 pos_)
+float PathFinding::Chebyshev(FIntVector2 pos_)
 {
 	float x = std::abs(pos_.X);
 	float y = std::abs(pos_.Y);
 	return (std::max)(x, y);
 }
 
-float Manhattan(FIntVector2 pos_)
+float PathFinding::Manhattan(FIntVector2 pos_)
 {
 	float x = std::abs(pos_.X);
 	float y = std::abs(pos_.Y);

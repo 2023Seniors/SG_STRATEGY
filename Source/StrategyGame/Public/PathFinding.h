@@ -17,8 +17,8 @@ struct NodePathFinding
 
 	FIntVector2 pos;
 	node_t parent;
-	float g;
 	float cost;
+	float g;
 };
 
 typedef TSharedPtr<NodePathFinding> node_t;
@@ -26,17 +26,32 @@ typedef TPair<float, FIntVector2> node_path;
 
 class AGridManager;
 
+enum class PathFindingMode
+{
+	EUCLIDEAN = 0,
+	OCTILE,
+	CHEBYSHEV,
+	MANHATTAN
+};
+
 class STRATEGYGAME_API PathFinding
 {
 public:
-	PathFinding();
+	static FIntVector2 PFFindPath(FIntVector2 start, FIntVector2 end, AGridManager* world, PathFindingMode mode = PathFindingMode::EUCLIDEAN, float weight_ = 1.01f);
+	static TArray<FIntVector2> PFFindFullPath(FIntVector2 start, FIntVector2 end, AGridManager* world, PathFindingMode mode = PathFindingMode::EUCLIDEAN, float weight_ = 1.01f);
+	
+private:
+	PathFinding(FIntVector2 cur_, FIntVector2 goal_, AGridManager* grid_, PathFindingMode mode = PathFindingMode::EUCLIDEAN, float weight_ = 1.01f);
 	~PathFinding();
 
-	void Reset(FIntVector2 cur_, FIntVector2 goal_, AGridManager* grid_);
 	void CreateSuccesor(FIntVector2 pos_, node_t parent_, int idxCorner);
 	bool CheckIdx(int x, int z);
-
 	node_t FindPop();
+
+	float Euclidean(FIntVector2 end, FIntVector2 start);
+	float Octile(FIntVector2 pos_);
+	float Chebyshev(FIntVector2 pos_);
+	float Manhattan(FIntVector2 pos_);
 
 	AGridManager* grid;
 
@@ -47,18 +62,9 @@ public:
 
 	bool stop = false;
 
-	int	  heuristicCalc;
-	float heuristicWeight;
+	float			  heuristicWeight;
+	PathFindingMode	  heuristicCalc;
 
 	TArray<node_t> openList;
 	TArray<node_t> closeList;
 };
-
-
-float Euclidean(FIntVector2 end, FIntVector2 start);
-float Octile(FIntVector2 pos_);
-float Chebyshev(FIntVector2 pos_);
-float Manhattan(FIntVector2 pos_);
-
-node_path FindPath(FIntVector2 start, FIntVector2 end, AGridManager* world);
-TArray<FIntVector2> FindFullPath(FIntVector2 start, FIntVector2 end, AGridManager* world);

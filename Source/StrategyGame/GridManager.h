@@ -48,6 +48,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 		bool	IsCellWalkableFromGridXY(int x, int y);
 
+	// Pathfinding 
+	FIntVector2 FindPath(FIntVector2 start, FIntVector2 end);
+	TArray<FIntVector2> FindFullPath(FIntVector2 start, FIntVector2 end);
+
+
 protected:
 	// Size of the Grid Map
 	FVector mMapSize;
