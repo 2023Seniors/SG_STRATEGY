@@ -3,14 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
-
-#include <vector>
-#include <list>
-#include <memory>
+#include "Chaos/Pair.h"
+#include "Containers/Array.h"
+#include "Containers/List.h"
 
 struct NodePathFinding
 {
-	typedef std::shared_ptr<NodePathFinding> node_t;
+	typedef TSharedPtr<NodePathFinding> node_t;
 
 	NodePathFinding(FIntVector2 pos_, node_t parent_ = nullptr, float cost_ = 0.f, float g_ = 0.f) :
 		pos(pos_), parent(parent_), cost(cost_), g(g_)
@@ -22,8 +21,8 @@ struct NodePathFinding
 	float cost;
 };
 
-typedef std::shared_ptr<NodePathFinding> node_t;
-typedef std::pair<float, FIntVector2> node_path;
+typedef TSharedPtr<NodePathFinding> node_t;
+typedef TPair<float, FIntVector2> node_path;
 
 class AGridManager;
 
@@ -51,8 +50,8 @@ public:
 	int	  heuristicCalc;
 	float heuristicWeight;
 
-	std::vector<node_t> openList;
-	std::vector<node_t> closeList;
+	TArray<node_t> openList;
+	TArray<node_t> closeList;
 };
 
 
@@ -62,4 +61,4 @@ float Chebyshev(FIntVector2 pos_);
 float Manhattan(FIntVector2 pos_);
 
 node_path FindPath(FIntVector2 start, FIntVector2 end, AGridManager* world);
-std::list<FIntVector2> FindFullPath(FIntVector2 start, FIntVector2 end, AGridManager* world);
+TArray<FIntVector2> FindFullPath(FIntVector2 start, FIntVector2 end, AGridManager* world);

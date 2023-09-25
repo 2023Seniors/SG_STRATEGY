@@ -16,8 +16,8 @@ void PathFinding::Reset(FIntVector2 cur_, FIntVector2 goal_, AGridManager* grid_
 {
 	stop = false;
 
-	openList.clear();
-	closeList.clear();
+	openList.Empty();
+	closeList.Empty();
 
 	goal = goal_;
 	grid = grid_;
@@ -28,7 +28,7 @@ void PathFinding::Reset(FIntVector2 cur_, FIntVector2 goal_, AGridManager* grid_
 	gridSize.X = mapSize.X;
 	gridSize.Y = mapSize.Y;
 
-	openList.push_back(node_t(new NodePathFinding(cur_)));
+	openList.Add(node_t(new NodePathFinding(cur_)));
 }
 
 bool PathFinding::CheckIdx(int x, int y)
@@ -97,7 +97,7 @@ void PathFinding::CreateSuccesor(FIntVector2 pos_, node_t parent_, int idxCorner
 	node->g = Euclidean(pos_, parent_->pos) + parent_->g;
 	node->cost = node->g + h * heuristicWeight;
 
-	for (int i = 0; i < openList.size(); i++) {
+	for (int i = 0; i < openList.Num(); i++) {
 		if (openList[i]->pos == pos_) {
 			// FOUND A NODE WITH BETTER COST, IGNORE CURRENT NODE
 			if (openList[i]->cost <= node->cost) {
@@ -112,7 +112,7 @@ void PathFinding::CreateSuccesor(FIntVector2 pos_, node_t parent_, int idxCorner
 		}
 	}
 
-	for (int i = 0; i < closeList.size(); i++) {
+	for (int i = 0; i < closeList.Num(); i++) {
 		// FOUND A NODE WITH BETTER COST, IGNORE CURRENT NODE
 		if (closeList[i]->pos == pos_ && closeList[i]->cost <= node->cost) {
 			return;
@@ -124,7 +124,7 @@ void PathFinding::CreateSuccesor(FIntVector2 pos_, node_t parent_, int idxCorner
 		//}
 	}
 
-	openList.push_back(node);
+	openList.Add(node);
 }
 
 // FIND THE NODE WITH LEAST COST FROM OPEN LIST AND DELETE IT
@@ -135,7 +135,7 @@ node_t PathFinding::FindPop()
 	int idx = 0;
 
 	// FIND NODE
-	for (int i = 1; i < openList.size(); i++) {
+	for (int i = 1; i < openList.Num(); i++) {
 		if (openList[i]->cost < minCost) {
 			minCost = openList[i]->cost;
 			node = openList[i];
@@ -144,7 +144,7 @@ node_t PathFinding::FindPop()
 	}
 
 	// DELETE IT
-	openList.erase(openList.begin() + idx);
+	openList.RemoveAt(idx);
 
 	return node;
 }
@@ -155,7 +155,7 @@ node_path FindPath(FIntVector2 start, FIntVector2 end, AGridManager* grid)
 	path.Reset(start, end, grid);
 
 	// UNTIL WE FIND A PATH OR LIST IS EMPTY
-	while (!path.openList.empty()) {
+	while (!path.openList.IsEmpty()) {
 
 		node_t node = path.FindPop();
 
@@ -173,7 +173,7 @@ node_path FindPath(FIntVector2 start, FIntVector2 end, AGridManager* grid)
 		path.CreateSuccesor({ node->pos.X - 1, node->pos.Y }, node, -1);
 		path.CreateSuccesor({ node->pos.X, node->pos.Y - 1 }, node, -1);
 
-		path.closeList.push_back(node);
+		path.closeList.Add(node);
 
 		// Path found
 		if (path.stop) {
@@ -196,15 +196,15 @@ node_path FindPath(FIntVector2 start, FIntVector2 end, AGridManager* grid)
 	return { 0.f, start };
 }
 
-std::list<FIntVector2> FindFullPath(FIntVector2 start, FIntVector2 end, AGridManager* grid)
+TArray<FIntVector2> FindFullPath(FIntVector2 start, FIntVector2 end, AGridManager* grid)
 {
 	static PathFinding path;
 	path.Reset(start, end, grid);
 
-	std::list<FIntVector2> pathVec;
+	TArray<FIntVector2> pathVec;
 
 	// UNTIL WE FIND A PATH OR LIST IS EMPTY
-	while (!path.openList.empty()) {
+	while (!path.openList.Num()) {
 
 		node_t node = path.FindPop();
 
@@ -222,14 +222,14 @@ std::list<FIntVector2> FindFullPath(FIntVector2 start, FIntVector2 end, AGridMan
 		path.CreateSuccesor({ node->pos.X - 1, node->pos.Y }, node, -1);
 		path.CreateSuccesor({ node->pos.X, node->pos.Y - 1 }, node, -1);
 
-		path.closeList.push_back(node);
+		path.closeList.Add(node);
 
 		// Path found
 		if (path.stop) {
 			// Get the next node to move
 			node_t pathNode = path.goalNode;
 			while (pathNode != nullptr) {
-				pathVec.push_front(pathNode->pos);
+				pathVec.Insert(pathNode->pos, 0);
 				pathNode = pathNode->parent;
 			}
 			break;
