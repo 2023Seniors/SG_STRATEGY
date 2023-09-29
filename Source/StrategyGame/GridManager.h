@@ -54,10 +54,14 @@ public:
 		FVector GetWorldPosFromCellXY(FVector cellXY);
 	UFUNCTION(BlueprintCallable)
 		bool	IsCellWalkableFromGridXY(int x, int y);
+	UFUNCTION(BlueprintCallable)
+		void DisplayGridDebugMode();
+	UFUNCTION(BlueprintCallable)
+		void DeleteGridDebugMode();
 
 	// Pathfinding 
 	UFUNCTION(BlueprintCallable)
-	TArray<FVector> FindFullPath(FVector start, FVector end);
+		TArray<FVector> FindFullPath(FVector start, FVector end);
 
 
 protected:

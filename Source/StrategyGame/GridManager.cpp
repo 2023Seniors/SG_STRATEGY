@@ -99,6 +99,28 @@ bool AGridManager::IsCellWalkableFromGridXY(int x, int y)
 	return mGridMap[mMapSize.Y * x + y].mWalkable;
 }
 
+void AGridManager::DisplayGridDebugMode()
+{
+	//AActor* UWorld::SpawnActor
+	//(
+	//	UClass * Class,
+	//	FName           InName,
+	//	FVector const* Location,
+	//	FRotator const* Rotation,
+	//	AActor * Template,
+	//	bool            bNoCollisionFail,
+	//	bool            bRemoteOwned,
+	//	AActor * Owner,
+	//	APawn * Instigator,
+	//	bool            bNoFail,
+	//	ULevel * OverrideLevel,
+	//	bool            bDeferConstruction
+	//)
+}
+void AGridManager::DeleteGridDebugMode()
+{
+}
+
 TArray<FVector> AGridManager::FindFullPath(FVector start, FVector end)
 {
 	FVector gridPosStart = GetCellXYFromWorldPos(start);
