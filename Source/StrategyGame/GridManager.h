@@ -51,11 +51,13 @@ public:
 	UFUNCTION(BlueprintCallable)
 		FVector GetCellXYFromWorldPos(FVector WorldPos);
 	UFUNCTION(BlueprintCallable)
+		FVector GetWorldPosFromCellXY(FVector cellXY);
+	UFUNCTION(BlueprintCallable)
 		bool	IsCellWalkableFromGridXY(int x, int y);
 
 	// Pathfinding 
-	FIntVector2 FindPath(FIntVector2 start, FIntVector2 end);
-	TArray<FIntVector2> FindFullPath(FIntVector2 start, FIntVector2 end);
+	UFUNCTION(BlueprintCallable)
+	TArray<FVector> FindFullPath(FVector start, FVector end);
 
 
 protected:
