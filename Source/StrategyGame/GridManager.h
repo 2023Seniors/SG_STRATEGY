@@ -9,18 +9,23 @@
 #include "GridManager.generated.h"
 
 
-enum GridCellModifiers
+enum GridCellModifier
 {
-	SLOW = 0,
-	FIRE,
-	POISON
+	EXIT = 0,
+	WALL,
+	VOID,
+	SPAWNER,
+	START0,
+	START1,
+	START2,
+	START3
 };
 
 struct Cell
 {
 	Cell();
 	AActor* mEntity;
-	TArray<GridCellModifiers> mModifiers;
+	GridCellModifier mModifier;
 	bool mWalkable;
 };
 

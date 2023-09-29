@@ -55,8 +55,8 @@ void AGridManager::SetEntityFromWorldPos(AActor* Entity)
 	FVector Zero = this->GetActorLocation();
 	FVector Delta = Entity->GetActorLocation() - Zero;
 
-	int x = (int)Delta.X % mCellSize.X;
-	int y = (int)Delta.Y % mCellSize.Y;
+	int x = (int)Delta.X / mCellSize.X;
+	int y = (int)Delta.Y / mCellSize.Y;
 
 	mGridMap[mMapSize.Y * x + y].mEntity = Entity;
 }
@@ -66,8 +66,8 @@ AActor* AGridManager::GetEntityFromWorldPos(FVector WorldPos)
 	FVector Zero = this->GetActorLocation();
 	FVector Delta = WorldPos - Zero;
 
-	int x = (int)Delta.X % mCellSize.X;
-	int y = (int)Delta.Y % mCellSize.Y;
+	int x = (int)Delta.X / mCellSize.X;
+	int y = (int)Delta.Y / mCellSize.Y;
 
 	return mGridMap[mMapSize.Y * x + y].mEntity;
 }
@@ -77,8 +77,8 @@ FVector AGridManager::GetCellXYFromWorldPos(FVector WorldPos)
 	FVector Zero = this->GetActorLocation();
 	FVector Delta = WorldPos - Zero;
 
-	int x = (int)Delta.X % mCellSize.X;
-	int y = (int)Delta.Y % mCellSize.Y;
+	int x = (int)Delta.X / mCellSize.X;
+	int y = (int)Delta.Y / mCellSize.Y;
 
 	return FVector(x, y, 0);
 }
