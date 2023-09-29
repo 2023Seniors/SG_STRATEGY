@@ -1,0 +1,302 @@
+{
+    "type": "Default",
+    "assets": "",
+    "tilemapData": {
+        "tiles": [
+            {
+                "position": {
+                    "x": 4,
+                    "y": 0
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 5,
+                    "y": 0
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 6,
+                    "y": 0
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 7,
+                    "y": 0
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 8,
+                    "y": 0
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 9,
+                    "y": 0
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 0,
+                    "y": 1
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 1,
+                    "y": 1
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 2,
+                    "y": 1
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 3,
+                    "y": 1
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 4,
+                    "y": 1
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 9,
+                    "y": 1
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 0,
+                    "y": 2
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 4,
+                    "y": 2
+                },
+                "tile": "StartMain"
+            },
+            {
+                "position": {
+                    "x": 5,
+                    "y": 2
+                },
+                "tile": "Start3"
+            },
+            {
+                "position": {
+                    "x": 10,
+                    "y": 2
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 0,
+                    "y": 3
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 4,
+                    "y": 3
+                },
+                "tile": "Start1"
+            },
+            {
+                "position": {
+                    "x": 5,
+                    "y": 3
+                },
+                "tile": "Start2"
+            },
+            {
+                "position": {
+                    "x": 10,
+                    "y": 3
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 0,
+                    "y": 4
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 10,
+                    "y": 4
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 0,
+                    "y": 5
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 9,
+                    "y": 5
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 0,
+                    "y": 6
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 9,
+                    "y": 6
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 0,
+                    "y": 7
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 1,
+                    "y": 7
+                },
+                "tile": "Spawner"
+            },
+            {
+                "position": {
+                    "x": 8,
+                    "y": 7
+                },
+                "tile": "Spawner"
+            },
+            {
+                "position": {
+                    "x": 9,
+                    "y": 7
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 0,
+                    "y": 8
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 1,
+                    "y": 8
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 6,
+                    "y": 8
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 7,
+                    "y": 8
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 8,
+                    "y": 8
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 9,
+                    "y": 8
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 1,
+                    "y": 9
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 2,
+                    "y": 9
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 3,
+                    "y": 9
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 4,
+                    "y": 9
+                },
+                "tile": "Exit"
+            },
+            {
+                "position": {
+                    "x": 5,
+                    "y": 9
+                },
+                "tile": "Wall"
+            },
+            {
+                "position": {
+                    "x": 6,
+                    "y": 9
+                },
+                "tile": "Wall"
+            }
+        ]
+    }
+}
