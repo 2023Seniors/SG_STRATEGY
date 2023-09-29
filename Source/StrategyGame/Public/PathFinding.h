@@ -60,7 +60,7 @@ private:
 	FIntVector2 goal;
 	FIntVector2 gridSize;
 
-	bool stop = false;
+	bool stop;
 
 	float			  heuristicWeight;
 	PathFindingMode	  heuristicCalc;

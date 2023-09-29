@@ -198,7 +198,7 @@ TArray<FIntVector2> PathFinding::PFFindFullPath(FIntVector2 start, FIntVector2 e
 	TArray<FIntVector2> pathVec;
 
 	// UNTIL WE FIND A PATH OR LIST IS EMPTY
-	while (!path.openList.Num()) {
+	while (!path.openList.IsEmpty()) {
 
 		node_t node = path.FindPop();
 
