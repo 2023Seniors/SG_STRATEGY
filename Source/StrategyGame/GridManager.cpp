@@ -12,9 +12,9 @@ AGridManager::AGridManager()
 
 
 	// Initialize the grid container
-	SetMapSize(100, 100);
+	SetMapSize(10, 10);
 	// Initialize the cell size
-	SetCellSize(10);
+	SetCellSize(150);
 }
 
 // Called when the game starts or when spawned
@@ -47,6 +47,10 @@ void AGridManager::SetCellSize(int size)
 {
 	mCellSize.X = size;
 	mCellSize.Y = size;
+}
+int AGridManager::GetCellSize()
+{
+	return mCellSize.X;
 }
 
 
@@ -97,28 +101,6 @@ FVector AGridManager::GetWorldPosFromCellXY(FVector cellXY)
 bool AGridManager::IsCellWalkableFromGridXY(int x, int y)
 {
 	return mGridMap[mMapSize.Y * x + y].mWalkable;
-}
-
-void AGridManager::DisplayGridDebugMode()
-{
-	//AActor* UWorld::SpawnActor
-	//(
-	//	UClass * Class,
-	//	FName           InName,
-	//	FVector const* Location,
-	//	FRotator const* Rotation,
-	//	AActor * Template,
-	//	bool            bNoCollisionFail,
-	//	bool            bRemoteOwned,
-	//	AActor * Owner,
-	//	APawn * Instigator,
-	//	bool            bNoFail,
-	//	ULevel * OverrideLevel,
-	//	bool            bDeferConstruction
-	//)
-}
-void AGridManager::DeleteGridDebugMode()
-{
 }
 
 TArray<FVector> AGridManager::FindFullPath(FVector start, FVector end)

@@ -45,6 +45,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void SetCellSize(int size);
 	UFUNCTION(BlueprintCallable)
+		int GetCellSize();
+	UFUNCTION(BlueprintCallable)
 		void SetEntityFromWorldPos(AActor* Entity);
 	UFUNCTION(BlueprintCallable)
 		AActor* GetEntityFromWorldPos(FVector WorldPos);
@@ -54,10 +56,6 @@ public:
 		FVector GetWorldPosFromCellXY(FVector cellXY);
 	UFUNCTION(BlueprintCallable)
 		bool	IsCellWalkableFromGridXY(int x, int y);
-	UFUNCTION(BlueprintCallable)
-		void DisplayGridDebugMode();
-	UFUNCTION(BlueprintCallable)
-		void DeleteGridDebugMode();
 
 	// Pathfinding 
 	UFUNCTION(BlueprintCallable)
