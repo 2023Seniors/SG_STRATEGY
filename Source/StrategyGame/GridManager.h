@@ -9,18 +9,23 @@
 #include "GridManager.generated.h"
 
 
-enum GridCellModifiers
+enum GridCellModifier
 {
-	SLOW = 0,
-	FIRE,
-	POISON
+	EXIT = 0,
+	WALL,
+	VOID,
+	SPAWNER,
+	START0,
+	START1,
+	START2,
+	START3
 };
 
 struct Cell
 {
 	Cell();
 	AActor* mEntity;
-	TArray<GridCellModifiers> mModifiers;
+	GridCellModifier mModifier;
 	bool mWalkable;
 };
 
@@ -46,11 +51,13 @@ public:
 	UFUNCTION(BlueprintCallable)
 		FVector GetCellXYFromWorldPos(FVector WorldPos);
 	UFUNCTION(BlueprintCallable)
+		FVector GetWorldPosFromCellXY(FVector cellXY);
+	UFUNCTION(BlueprintCallable)
 		bool	IsCellWalkableFromGridXY(int x, int y);
 
 	// Pathfinding 
-	FIntVector2 FindPath(FIntVector2 start, FIntVector2 end);
-	TArray<FIntVector2> FindFullPath(FIntVector2 start, FIntVector2 end);
+	UFUNCTION(BlueprintCallable)
+	TArray<FVector> FindFullPath(FVector start, FVector end);
 
 
 protected:
