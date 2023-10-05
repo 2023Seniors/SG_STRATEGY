@@ -14,7 +14,7 @@ AGridManager::AGridManager()
 	// Initialize the grid container
 	SetMapSize(10, 10);
 	// Initialize the cell size
-	SetCellSize(150);
+	SetCellSize(300);
 }
 
 // Called when the game starts or when spawned
