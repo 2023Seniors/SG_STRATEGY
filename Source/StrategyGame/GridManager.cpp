@@ -12,9 +12,9 @@ AGridManager::AGridManager()
 
 
 	// Initialize the grid container
-	SetMapSize(100, 100);
+	SetMapSize(10, 10);
 	// Initialize the cell size
-	SetCellSize(10);
+	SetCellSize(150);
 }
 
 // Called when the game starts or when spawned
@@ -47,6 +47,10 @@ void AGridManager::SetCellSize(int size)
 {
 	mCellSize.X = size;
 	mCellSize.Y = size;
+}
+int AGridManager::GetCellSize()
+{
+	return mCellSize.X;
 }
 
 
