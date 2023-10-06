@@ -45,6 +45,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void SetCellSize(int size);
 	UFUNCTION(BlueprintCallable)
+		int GetCellSize();
+	UFUNCTION(BlueprintCallable)
 		void SetEntityFromWorldPos(AActor* Entity);
 	UFUNCTION(BlueprintCallable)
 		AActor* GetEntityFromWorldPos(FVector WorldPos);
@@ -57,7 +59,7 @@ public:
 
 	// Pathfinding 
 	UFUNCTION(BlueprintCallable)
-	TArray<FVector> FindFullPath(FVector start, FVector end);
+		TArray<FVector> FindFullPath(FVector start, FVector end);
 
 
 protected:
