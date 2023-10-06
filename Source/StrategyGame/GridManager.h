@@ -8,17 +8,17 @@
 
 #include "GridManager.generated.h"
 
-
-enum GridCellModifier
+UENUM(BlueprintType)
+enum class GridCellModifier : uint8
 {
-	EXIT = 0,
-	WALL,
-	VOID,
-	SPAWNER,
-	START0,
-	START1,
-	START2,
-	START3
+	EXIT	UMETA(DisplayName = "EXIT"),
+	WALL	UMETA(DisplayName = "WALL"),
+	VOID	UMETA(DisplayName = "VOID"),
+	SPAWNER	UMETA(DisplayName = "SPAWNER"),
+	START0	UMETA(DisplayName = "START0"),
+	START1	UMETA(DisplayName = "START1"),
+	START2	UMETA(DisplayName = "START2"),
+	START3	UMETA(DisplayName = "START3")
 };
 
 struct Cell
@@ -38,6 +38,7 @@ public:
 	// Sets default values for this actor's properties
 	AGridManager();
 
+	// Grid/Cell Size
 	UFUNCTION(BlueprintCallable)
 		void SetMapSize(int width, int height);
 	UFUNCTION(BlueprintCallable)
@@ -45,19 +46,27 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void SetCellSize(int size);
 	UFUNCTION(BlueprintCallable)
-		void SetEntityFromWorldPos(AActor* Entity);
-	UFUNCTION(BlueprintCallable)
-		AActor* GetEntityFromWorldPos(FVector WorldPos);
+		int GetCellSize();
+	// Position
 	UFUNCTION(BlueprintCallable)
 		FVector GetCellXYFromWorldPos(FVector WorldPos);
 	UFUNCTION(BlueprintCallable)
 		FVector GetWorldPosFromCellXY(FVector cellXY);
+	// Cell
+	UFUNCTION(BlueprintCallable)
+		void SetEntityFromWorldPos(AActor* Entity, bool walkable = false);
+	UFUNCTION(BlueprintCallable)
+		AActor* GetEntityFromWorldPos(FVector WorldPos);
 	UFUNCTION(BlueprintCallable)
 		bool	IsCellWalkableFromGridXY(int x, int y);
+	UFUNCTION(BlueprintCallable)
+		void	SetCellWalkableFromGridXY(int x, int y, bool walkable);
+	UFUNCTION(BlueprintCallable)
+		void SetCellModifierFromXY(int x, int y, GridCellModifier modifier);
 
 	// Pathfinding 
 	UFUNCTION(BlueprintCallable)
-	TArray<FVector> FindFullPath(FVector start, FVector end);
+		TArray<FVector> FindFullPath(FVector start, FVector end);
 
 
 protected:

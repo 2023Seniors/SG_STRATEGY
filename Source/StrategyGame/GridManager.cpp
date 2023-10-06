@@ -9,12 +9,6 @@ AGridManager::AGridManager()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
-
-	// Initialize the grid container
-	SetMapSize(100, 100);
-	// Initialize the cell size
-	SetCellSize(10);
 }
 
 // Called when the game starts or when spawned
@@ -48,6 +42,10 @@ void AGridManager::SetCellSize(int size)
 	mCellSize.X = size;
 	mCellSize.Y = size;
 }
+int AGridManager::GetCellSize()
+{
+	return mCellSize.X;
+}
 
 
 // Called every frame
@@ -55,11 +53,13 @@ void AGridManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 }
-void AGridManager::SetEntityFromWorldPos(AActor* Entity)
+void AGridManager::SetEntityFromWorldPos(AActor* Entity, bool walkable)
 {
 	FVector cell = GetCellXYFromWorldPos(Entity->GetActorLocation());
+	Cell* selectedCell = &mGridMap[mMapSize.Y * cell.X + cell.Y];
 
-	mGridMap[mMapSize.Y * cell.X + cell.Y].mEntity = Entity;
+	selectedCell->mEntity = Entity;
+	selectedCell->mWalkable = walkable;
 }
 
 AActor* AGridManager::GetEntityFromWorldPos(FVector WorldPos)
@@ -97,6 +97,14 @@ FVector AGridManager::GetWorldPosFromCellXY(FVector cellXY)
 bool AGridManager::IsCellWalkableFromGridXY(int x, int y)
 {
 	return mGridMap[mMapSize.Y * x + y].mWalkable;
+}
+void AGridManager::SetCellWalkableFromGridXY(int x, int y, bool walkable)
+{
+	mGridMap[mMapSize.Y * x + y].mWalkable = walkable;
+}
+void AGridManager::SetCellModifierFromXY(int x, int y, GridCellModifier modifier)
+{
+	mGridMap[mMapSize.Y * x + y].mModifier = modifier;
 }
 
 TArray<FVector> AGridManager::FindFullPath(FVector start, FVector end)
