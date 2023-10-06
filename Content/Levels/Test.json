@@ -1,0 +1,173 @@
+{
+    "type": "Default",
+    "assets": "",
+    "size": {
+        "x": 8,
+        "y": 6
+    },
+    "tilemapData": {
+        "tiles": [
+            {
+                "position": {
+                    "x": 0,
+                    "y": 0
+                },
+                "tile": "Blockable"
+            },
+            {
+                "position": {
+                    "x": 1,
+                    "y": 0
+                },
+                "tile": "Blockable"
+            },
+            {
+                "position": {
+                    "x": 2,
+                    "y": 0
+                },
+                "tile": "Blockable"
+            },
+            {
+                "position": {
+                    "x": 3,
+                    "y": 0
+                },
+                "tile": "Blockable"
+            },
+            {
+                "position": {
+                    "x": 4,
+                    "y": 0
+                },
+                "tile": "Blockable"
+            },
+            {
+                "position": {
+                    "x": 5,
+                    "y": 0
+                },
+                "tile": "Blockable"
+            },
+            {
+                "position": {
+                    "x": 6,
+                    "y": 0
+                },
+                "tile": "Blockable"
+            },
+            {
+                "position": {
+                    "x": 7,
+                    "y": 0
+                },
+                "tile": "Blockable"
+            },
+            {
+                "position": {
+                    "x": 0,
+                    "y": 1
+                },
+                "tile": "Blockable"
+            },
+            {
+                "position": {
+                    "x": 7,
+                    "y": 1
+                },
+                "tile": "Blockable"
+            },
+            {
+                "position": {
+                    "x": 0,
+                    "y": 2
+                },
+                "tile": "Blockable"
+            },
+            {
+                "position": {
+                    "x": 7,
+                    "y": 2
+                },
+                "tile": "Blockable"
+            },
+            {
+                "position": {
+                    "x": 0,
+                    "y": 3
+                },
+                "tile": "Blockable"
+            },
+            {
+                "position": {
+                    "x": 1,
+                    "y": 3
+                },
+                "tile": "Blockable"
+            },
+            {
+                "position": {
+                    "x": 7,
+                    "y": 3
+                },
+                "tile": "Blockable"
+            },
+            {
+                "position": {
+                    "x": 1,
+                    "y": 4
+                },
+                "tile": "Blockable"
+            },
+            {
+                "position": {
+                    "x": 7,
+                    "y": 4
+                },
+                "tile": "Blockable"
+            },
+            {
+                "position": {
+                    "x": 2,
+                    "y": 5
+                },
+                "tile": "Blockable"
+            },
+            {
+                "position": {
+                    "x": 3,
+                    "y": 5
+                },
+                "tile": "Blockable"
+            },
+            {
+                "position": {
+                    "x": 4,
+                    "y": 5
+                },
+                "tile": "Blockable"
+            },
+            {
+                "position": {
+                    "x": 5,
+                    "y": 5
+                },
+                "tile": "Blockable"
+            },
+            {
+                "position": {
+                    "x": 6,
+                    "y": 5
+                },
+                "tile": "Blockable"
+            },
+            {
+                "position": {
+                    "x": 7,
+                    "y": 5
+                },
+                "tile": "Blockable"
+            }
+        ]
+    }
+}
